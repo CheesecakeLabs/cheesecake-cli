@@ -1,0 +1,48 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "boundary",
+  "editor.insertSpaces": true,
+  "editor.wordWrap": "off",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 12,
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.lineHeight": 20,
+  "editor.minimap.renderCharacters": true,
+  "editor.renderControlCharacters": true,
+  "editor.codeLens": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "markdown.styles": [".vscode/github-markdown.css"],
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "shakram02.bash-beautify"
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+
+  "trailing-spaces.trimOnSave": true,
+  "trailing-spaces.includeEmptyLines": false,
+  "trailing-spaces.backgroundColor": "rgba(255, 85, 85, 0.3)",
+  "trailing-spaces.borderColor": "rgba(255, 85, 85, 0.5)"
+}

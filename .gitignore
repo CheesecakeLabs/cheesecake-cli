@@ -1,0 +1,21 @@
+# Vendors
+/engineering
+
+# Environment
+.env
+.env.backup
+env/*.priv.env
+
+#Local logs
+/*.log
+
+#Git
+.gitconfig
+
+# IDE/Dev files
+/.dev
+/.idea
+*.dev.md
+
+# OS generated files
+.DS_Store

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+CKL=$HOME/.ckl
+
+CURRENT_DIR=$(pwd)
+
+ckl_error() {
+    echo "CKL Error:: $1, cannot proceed!" >&2
+    exit 1
+}
+
+quiet_cd() {
+    cd "$@" &>/dev/null || return
+}
+
+# Fail fast CKL path does not exist anymore
+if [[ ! -d "${CKL}" ]]; then
+    ckl_error "The CKL directory doesn't exist anymore"
+fi
+
+# Fail fast with concise message when not using bash
+# shellcheck disable=SC2292
+if [[ -z "${BASH_VERSION:-}" ]]; then
+    ckl_error "Bash is required to run CKL"
+fi
+
+set +o posix # as we are using bash now
+
+# Fail fast when cwd does not exist
+if [[ ! -d "${CURRENT_DIR}" ]]; then
+    ckl_error "The current working directory doesn't exist"
+fi
+
+# Fail fast when XCode dependency is not installed
+if ! command -v xcode-select >/dev/null 2>&1; then
+    ckl_error "XCode is not installed"
+    exit 1
+fi
+
+export CURRENT_DIR
+
+quiet_cd "$CKL"
+bash ckl.sh "$@"
+quiet_cd "/dev/null"
