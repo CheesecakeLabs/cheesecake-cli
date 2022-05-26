@@ -37,10 +37,6 @@ checkProject() {
 }
 
 checkStarter() {
-    if [[ "$1" ]]; then
-        starter="$1"
-    fi
-
     starters=(
         "python-django"
         "nodejs-typescript"
@@ -49,9 +45,13 @@ checkStarter() {
         "flutter"
     )
 
-    subtitle "Choose the stack:"
-    run_menu "${starters[@]}"
-    starter=${starters[$SELECTED]}
+    if [[ "$1" ]] && [[ "${starters[*]}" =~ $1 ]]; then
+        starter="$1"
+    else
+        subtitle "Choose the stack:"
+        run_menu "${starters[@]}"
+        starter=${starters[$SELECTED]}
+    fi
 
     if [[ ! -d "${CKL_PATH}/engineering/starters/${starter}" ]]; then
         exception_repository "$starter"
