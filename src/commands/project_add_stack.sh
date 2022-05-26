@@ -22,7 +22,7 @@ runAddAnStack() {
     mkdir "$stack_slug"
     cp -r "$CKL_PATH"/engineering/starters/"$STARTER"/. ./"$stack_slug"
 
-    git add .
+    git add "$stack_slug//"
     git commit -m "feat: add '${STARTER}' starter"
 
     return $?
