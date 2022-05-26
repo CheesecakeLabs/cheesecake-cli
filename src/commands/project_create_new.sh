@@ -23,9 +23,13 @@ runCreateNewProject() {
     project_name="${customer_slug}-${project_slug}"
     project_path="$PROJECTS_PATH"/"$project_name"
 
+    if [ -d "$project_path" ]; then
+        exception_message "Error trying to create a project with a name that already exists."
+    fi
+
     mkdir "$project_path"
     cp -r "$CKL_PATH"/engineering/monorepo/. "$project_path"
-    cd "$project_path" || exception_random
+    cd "$project_path" || exception_unexpected
 
     git init --initial-branch="$MAIN_BRANCH"
     git config user.name "$GIT_NAME"
