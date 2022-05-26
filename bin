@@ -13,15 +13,29 @@ quiet_cd() {
     cd "$@" &>/dev/null || return
 }
 
-# Fail fast CKL path does not exist anymore
-if [[ ! -d "${CKL}" ]]; then
-    ckl_error "The CKL directory doesn't exist anymore"
-fi
+exists() {
+    command -v "$1" >/dev/null 2>&1
+}
 
 # Fail fast with concise message when not using bash
 # shellcheck disable=SC2292
 if [[ -z "${BASH_VERSION:-}" ]]; then
     ckl_error "Bash is required to run CKL"
+fi
+
+# Fail fast if XCode not exist
+if ! exists xcode-select; then
+    ckl_error "XCode is required to execute this action, please install it and try again!"
+fi
+
+# Fail fast if CKL command don't exist anymore
+if ! exists ckl; then
+    ckl_error "CKL directory doesn't exist anymore, please install it and try again!"
+fi
+
+# Fail fast if CKL path don't exist anymore
+if [[ ! -d "${CKL}" ]]; then
+    ckl_error "CKL directory doesn't exist anymore"
 fi
 
 set +o posix # as we are using bash now
