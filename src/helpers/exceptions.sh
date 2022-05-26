@@ -14,6 +14,13 @@ exception_bottom() {
     printf "\n\n%b Check your command and try again,\n if the error persists please report it.%b \n\n\n" "$COL_LGRAY" "$COL_RESET"
 }
 
+exception_message() {
+    exception_header
+    printf " %b%s%b." "$COL_YELLOW" "$@" "$COL_RESET"
+    exception_bottom
+    exit
+}
+
 exception_repository() {
     exception_header
     printf " Repository %b%s%b not found!\n\n" "$COL_YELLOW" "$1" "$COL_RESET"
@@ -29,23 +36,10 @@ exception_command() {
     exit
 }
 
+exception_unexpected() {
+    exception_message " An unexpected error has occurred."
+}
+
 exception_arguments() {
-    exception_header
-    printf "Expected arguments not found."
-    exception_bottom
-    exit
-}
-
-exception_random() {
-    exception_header
-    printf " An unexpected error has occurred at %b%s%b." "$COL_YELLOW" "$1" "$COL_RESET"
-    exception_bottom
-    exit
-}
-
-exception_aborted() {
-    exception_header
-    printf " You just aborted this command"
-    printf "\n\n\n"
-    exit
+    exception_message "Expected arguments not found."
 }

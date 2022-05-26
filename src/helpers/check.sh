@@ -15,7 +15,7 @@ checkCommands() {
 }
 
 checkProject() {
-    cd "${PROJECTS_PATH}" || exception_random
+    cd "${PROJECTS_PATH}" || exception_unexpected
 
     if [[ -z "$1" ]]; then
         subtitle "Select an project:"
