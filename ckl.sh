@@ -11,6 +11,7 @@ tput reset
 showHeader
 
 case "$COMMAND" in
+
     ###################
     ## BASIC COMMANDS
     
@@ -20,6 +21,14 @@ case "$COMMAND" in
         runMainMenu "$@"
         exit
     ;;
+
+    "help"|"--help"|"-h")
+        showHelp
+        exit
+    ;;
+
+    ###################
+    ## PROJECT COMMANDS
 
     # new project
     "new"|"--new"|"-n")
@@ -32,12 +41,13 @@ case "$COMMAND" in
         runAddAnStack "$@"
         exit
     ;;
-
-    "help"|"--help"|"-h")
-        showHelp
+    
+    # cloning project
+    "clone")
+        runCloningRepo "$@"
         exit
     ;;
-    
+
     ###################
     ## WHEN INVALID COMMAND
     *)
