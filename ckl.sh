@@ -32,12 +32,14 @@ case "$COMMAND" in
 
     # new project
     "new"|"--new"|"-n")
+        runCheckEngineering
         runCreateNewProject "$@"
         exit
     ;;
 
     # add a stack to an existing project
     "add"|"--add"|"-a")
+        runCheckEngineering
         runAddAnStack "$@"
         exit
     ;;

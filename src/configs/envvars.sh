@@ -11,6 +11,8 @@ clone
 help --help -h
 "
 
+export ENGINEERING_BRANCH="git@github.com:CheesecakeLabs/engineering.git"
+
 export DEV_BRANCH="development"
 export MAIN_BRANCH="main"
 
