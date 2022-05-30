@@ -12,16 +12,16 @@ exception_header() {
 
 exception_bottom() {
     if [ -z "$1" ]; then
-        printf "\n\n%b Check your command and try again,\n if the error persists please report it.%b \n\n\n" "$COL_LGRAY" "$COL_RESET"
+        printf "\n\n%b _Check your command and try again,\n if the error persists please report it.%b \n\n\n" "$COL_LGRAY" "$COL_RESET"
     else
-        printf "\n\n%b %s %b \n\n\n" "$COL_LGRAY" "$@" "$COL_RESET"
+        printf "\n\n%b _%s %b \n\n\n" "$COL_LGRAY" "$@" "$COL_RESET"
     fi
 }
 
 exception_ssh() {
     exception_header
     printf " Wasn't possible to clone the %b%s%b repository!\n\n" "$COL_YELLOW" "$1" "$COL_RESET"
-    exception_bottom " Please check your ssh key and try again."
+    exception_bottom " Please check the ssh key and repository name."
     printf "\n\n\n"
     exit
 }
