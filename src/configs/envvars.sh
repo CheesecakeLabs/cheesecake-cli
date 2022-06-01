@@ -7,7 +7,7 @@ export MAIN_COMMANDS="
 menu
 new --new -n
 add --add -a
-clone
+utils --utils -u
 help --help -h
 "
 

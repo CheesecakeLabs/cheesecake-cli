@@ -4,8 +4,8 @@ runMainMenu() {
     local menu_items=(
         "Create new project"
         "Add stack to an existing project"
+        "Install utils"
         "Help"
-        "Exit"
     )
 
     run_menu "${menu_items[@]}"
@@ -22,9 +22,13 @@ runMainMenu() {
         ;;
         2)
             printf "\n\n"
+            runInstallUtils
+        ;;
+        3)
+            printf "\n\n"
             showHelp
         ;;
-        3) exit;;
+        *) exit;;
     esac
 
     return $?

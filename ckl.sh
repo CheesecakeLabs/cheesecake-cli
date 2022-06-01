@@ -43,10 +43,17 @@ case "$COMMAND" in
         runAddAnStack "$@"
         exit
     ;;
-    
-    # cloning project
-    "clone")
-        runCloningRepo "$@"
+
+    ###################
+    ## INSTALL UTILS
+
+    # run main install
+    "utils"|"--utils"|"-u")
+        if [[ $1 == "install" ]]; then
+            shift 1
+        fi
+        
+        runInstallUtils "$@"
         exit
     ;;
 
