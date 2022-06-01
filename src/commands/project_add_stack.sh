@@ -1,6 +1,8 @@
 #!/bin/bash
 
 runAddAnStack() {
+    runCheckEngineering
+
     checkProject "$1"
     shift 1
 

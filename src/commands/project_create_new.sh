@@ -1,6 +1,8 @@
 #!/bin/bash
 
 runCreateNewProject() {
+    runCheckEngineering
+
     if [[ -z "$1" ]]; then
         ask "Customer name:"
         read -r customer
@@ -16,6 +18,8 @@ runCreateNewProject() {
         project="$1"
         shift 1
     fi
+
+    step "Creating project"
 
     customer_slug=$(echo "$customer" | iconv -t ascii//TRANSLIT | sed -r s/[~\^]+//g | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | tr A-Z a-z)
     project_slug=$(echo "$project" | iconv -t ascii//TRANSLIT | sed -r s/[~\^]+//g | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | tr A-Z a-z)
