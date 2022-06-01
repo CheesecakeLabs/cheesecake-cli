@@ -4,13 +4,11 @@ function run_menu()  # selected_item, ...menu_items
 {
     local selected_item="0"
 
-    local menu_items=("$@")
+    local menu_items=("$@" "EXIT")
     local menu_size="${#menu_items[@]}"
     local menu_limit=$((menu_size - 1))
 
-    tput civis # invisible cursor
-    tput sc # save cursor
-
+    save_cursor
     print_menu "$selected_item" "${menu_items[@]}"
 
     while read -rsn1 input
@@ -43,13 +41,18 @@ function run_menu()  # selected_item, ...menu_items
                             ;;
                     esac
 
-                    tput rc # restore cursor
-                    tput el # erase to end of line
+                    restore_cursor
+                    save_cursor
+
                     print_menu "$selected_item" "${menu_items[@]}"
                 fi
                 ;;
             "")  # Enter key
-                tput cnorm # normal state cursor
+
+                if [ "$selected_item" == "$menu_limit" ]; then
+                    quit "Command ended!"
+                    exit
+                fi
 
                 export SELECTED="$selected_item"
                 return $?
@@ -69,28 +72,18 @@ function print_menu()  # selected_item, ...menu_items
 
     for (( i = 0; i < "$menu_size"; ++i ))
     do
-        if [ "$i" = "$selected_item" ]
-        then
-            printf " %b> %s%b \n" "$COL_CYAN" "${menu_items[i]}" "$COL_RESET"
+        if [ "$i" = "$selected_item" ]; then
+            if [ "${menu_items[i]}" == "EXIT" ]; then
+                printf " %b> EXIT%b" "$COL_RED" "$COL_RESET"
+            else
+                printf " %b> %s%b \n" "$COL_CYAN" "${menu_items[i]}" "$COL_RESET"
+            fi
         else
-            printf " . %s \n" "${menu_items[i]}"
+            if [ "${menu_items[i]}" == "EXIT" ]; then
+                printf " . EXIT"
+            else
+                printf " . %s \n" "${menu_items[i]}"
+            fi
         fi
     done
 }
-
-
-## EXAMPLE ##
-# menu_items=('Login' 'Register' 'Guest' 'Exit')
-# run_menu "${menu_items[@]}"
-
-# echo "$SELECTED"
-
-# case "$SELECTED"
-# in
-#     0) echo 'Login item selected';;
-#     1) echo 'Register item selected';;
-#     2) echo 'Guest item selected';;
-#     3) echo 'Exit item selected';;
-# esac
-
-# exit
