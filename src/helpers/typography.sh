@@ -9,7 +9,15 @@ subtitle() {
 }
 
 step() {
+    printf "\n%b%s...%b\n\n" "$COL_LGRAY" "$@" "$COL_RESET"
+}
+
+success() {
     printf "\n%b%s...%b\n\n" "$COL_GREEN" "$@" "$COL_RESET"
+}
+
+quit() {
+    printf "\n%b - %s%b\n\n" "$COL_LGRAY" "$@" "$COL_RESET"
 }
 
 ask() {
