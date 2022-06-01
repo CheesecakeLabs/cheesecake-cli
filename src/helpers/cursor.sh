@@ -1,12 +1,15 @@
 #!/bin/bash
 
-function restore_saved_cursor() {
-    tput rc # restore cursor
-    tput el # erase to end of line
+function save_cursor() {
     tput sc # save cursor
+    tput civis # invisible cursor
 }
 
-function reset_original_cursor() {
+function restore_cursor() {
+    tput rc # restore cursor
+    tput el # erase to end of line
+}
+
+function reset_cursor() {
     tput cnorm
-    tput reset
 }
