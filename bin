@@ -1,7 +1,5 @@
 #!/bin/bash
 
-CKL=$HOME/.ckl
-
 CURRENT_DIR=$(pwd)
 
 ckl_error() {
@@ -53,6 +51,4 @@ fi
 
 export CURRENT_DIR
 
-quiet_cd "$CKL"
 bash ckl.sh "$@"
-quiet_cd "/dev/null"
